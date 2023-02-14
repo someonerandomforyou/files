@@ -1,3 +1,15 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+
 <script>
-document.write("yess");
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    const key = params.key;
+    var encrypted = CryptoJS.AES.encrypt("Message", key);
+    var decrypted = CryptoJS.AES.decrypt(encrypted, key);
+
+    let a = encrypted;
+    a += "*****" + decrypted;
+    a += "*****" + decrypted.toString(CryptoJS.enc.Utf8);
+    document.write(a);
 </script>
